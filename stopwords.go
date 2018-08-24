@@ -1,9 +1,14 @@
 package woma
 
+var stopwords map[string]bool
+
 // Stopwords returns a stopword list taken from:
 // http://www.lextek.com/manuals/onix/stopwords1.html
 func Stopwords() map[string]bool {
-	return map[string]bool{
+	if stopwords != nil {
+		return stopwords
+	}
+	stopwords = map[string]bool{
 		"a":           true,
 		"about":       true,
 		"above":       true,
@@ -427,4 +432,5 @@ func Stopwords() map[string]bool {
 		"your":        true,
 		"yours":       true,
 		"z":           true}
+	return stopwords
 }
