@@ -47,3 +47,16 @@ func isWordChar(char rune) bool {
 	}
 	return false
 }
+
+// WithoutStopwords returns a new phrase without stopwords.
+func (p Phrase) WithoutStopwords() Phrase {
+	var without Phrase
+	stops := Stopwords()
+	for i := range p {
+		if stops[p[i]] {
+			continue
+		}
+		without = append(without, p[i])
+	}
+	return without
+}
