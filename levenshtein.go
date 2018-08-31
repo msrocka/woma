@@ -44,10 +44,3 @@ func levenshtein(a, b []rune) int {
 	}
 	return row[len(a)]
 }
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
