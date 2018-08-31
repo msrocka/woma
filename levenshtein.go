@@ -4,9 +4,10 @@ package woma
 // see https://gist.github.com/andrei-m/982927#gistcomment-1931258
 // and https://jsperf.com/levenshtein123456
 func Levenshtein(word1, word2 string) int {
-	a := []rune(word1)
-	b := []rune(word2)
+	return levenshtein([]rune(word1), []rune(word2))
+}
 
+func levenshtein(a, b []rune) int {
 	if len(a) == 0 {
 		return len(b)
 	}
@@ -19,7 +20,12 @@ func Levenshtein(word1, word2 string) int {
 		a, b = b, a
 	}
 
+	// init the row
 	row := make([]int, len(a)+1)
+	for j := 1; j <= len(a); j++ {
+		row[j] = j
+	}
+
 	for i := 1; i <= len(b); i++ {
 		prev := i
 		var val int
